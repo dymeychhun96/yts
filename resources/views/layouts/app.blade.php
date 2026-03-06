@@ -14,7 +14,7 @@
     @stack('css')
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
     <div class="container-fluid">
         @include('partials.navbar')
 
@@ -24,11 +24,18 @@
     </div>
 
     <!-- script -->
-    <script>
-        const data = @json($data);
-        console.log(data);
-    </script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        let navbarMenu = document.getElementById('navbarMenu');
+
+        navbarMenu.addEventListener('show.mdb.collapse', function() {
+            $('#hamburgerIcon').text('close');
+        });
+
+        navbarMenu.addEventListener('hide.mdb.collapse', function() {
+            $('#hamburgerIcon').text('menu');
+        });
+    </script>
 
     @stack('js')
 </body>

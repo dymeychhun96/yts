@@ -5,7 +5,8 @@ namespace App\Services\V1;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Http;
 
-class HomeService {
+class HomeService
+{
     private $baseUrl;
 
     public function __construct()
@@ -17,15 +18,23 @@ class HomeService {
     {
         $page = $request->get('page', 1);
 
-        $response = Http::withoutVerifying()
-            ->acceptJson()
-            ->get("{$this->baseUrl}list_movies.json", ['page' => $page])
-            ->json();
+        if (!$page) {
+            abort(404);
+        }
 
-        $movies = $response['data']['movies'];
-        $currentPage = $response['data']['page_number'];
-        $total = $response['data']['movie_count'];
-        $perPage = $response['data']['limit'];
+        $response = Http::acceptJson()
+            ->get("{$this->baseUrl}/list_movies.json", ['page' => $page]);
+
+        if ($response->failed()) {
+            return new LengthAwarePaginator([], 0, 20);
+        }
+
+        $response = $response->json();
+
+        $movies = $response['data']['movies'] ?? [];
+        $currentPage = $response['data']['page_number'] ?? 1;
+        $total = $response['data']['movie_count'] ?? 0;
+        $perPage = $response['data']['limit'] ?? 20;
 
         $paginator = new LengthAwarePaginator($movies, $total, $perPage, $currentPage, ['path' => $request->url(), 'query' => $request->query()]);
 
@@ -35,18 +44,25 @@ class HomeService {
     public function search($request)
     {
         $query = $request->get('query_term', '');
+        $page = $request->get('page', 1);
 
-        $response = Http::withoutVerifying()
-            ->acceptJson()
-            ->get("{$this->baseUrl}list_movies.json?query_term={$query}")
-            ->json();
+        if (!$query || !$page) {
+            abort(404);
+        }
 
+        $response = Http::acceptJson()
+            ->get("{$this->baseUrl}/list_movies.json", ["query_term" => $query, "page" => $page]);
 
+        if ($response->failed()) {
+            return new LengthAwarePaginator([], 0, 20);
+        }
+
+        $response = $response->json();
 
         $movies = $response['data']['movies'] ?? [];
-        $currentPage = $response['data']['page_number'];
-        $total = $response['data']['movie_count'];
-        $perPage = $response['data']['limit'];
+        $currentPage = $response['data']['page_number'] ?? 1;
+        $total = $response['data']['movie_count'] ?? 0;
+        $perPage = $response['data']['limit'] ?? 20;
 
         $paginator = new LengthAwarePaginator($movies, $total, $perPage, $currentPage, ['path' => $request->url(), 'query' => $request->query()]);
 
@@ -61,10 +77,18 @@ class HomeService {
             abort(404);
         }
 
-        $response = Http::withoutVerifying()
-            ->acceptJson()
-            ->get("{$this->baseUrl}movie_details.json?movie_id={$movie_id}")
-            ->json();
+        $response = Http::acceptJson()
+            ->get("{$this->baseUrl}/movie_details.json", ["movie_id" => $movie_id]);
+
+        if ($response->failed()) {
+            return [];
+        }
+
+        $response = $response->json();
+
+        if ($response == null) {
+            return [];
+        }
 
         return $response;
     }
