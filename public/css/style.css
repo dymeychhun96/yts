@@ -1,0 +1,8 @@
+.nav-icon {
+  font-variation-settings: "FILL" 0;
+  transition: font-variation-settings 0.2s;
+}
+
+.nav-link.active .nav-icon {
+  font-variation-settings: "FILL" 1;
+}

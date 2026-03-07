@@ -29,7 +29,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Navbar</a>
         <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarMenu"
             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="material-symbols-rounded" id="hamburgerIcon">
@@ -39,13 +39,17 @@
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link icon-link {{ Route::is('home') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('home') }}">
+                        <span class="material-symbols-rounded nav-icon me-1">home</span>
+                        Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link icon-link" href="#">
+                        <span class="material-symbols-rounded nav-icon me-1">travel_explore</span>
+                        Browse Movies
+                    </a>
                 </li>
             </ul>
             <form class="d-flex input-group w-auto" action="{{ route('search') }}" method="get">
