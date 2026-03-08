@@ -41,14 +41,13 @@
                 <li class="nav-item">
                     <a class="nav-link icon-link {{ Route::is('home') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('home') }}">
-                        <span class="material-symbols-rounded nav-icon me-1">home</span>
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-link" href="#">
-                        <span class="material-symbols-rounded nav-icon me-1">travel_explore</span>
-                        Browse Movies
+                    <a class="nav-link icon-link {{ Route::is('browse-movies') ? 'active' : '' }}"
+                        href="{{ route('browse-movies') }}">
+                        4K
                     </a>
                 </li>
             </ul>

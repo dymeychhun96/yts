@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mt-4 row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
-        @forelse ($data as $movie)
+        @foreach ($data as $movie)
             <div class="col">
                 <div class="card h-100">
                     <div class="bg-image hover-zoom">
@@ -23,11 +23,7 @@
                     </div>
                 </div>
             </div>
-        @empty
-            <div class="col">
-                <h5>No movie found</h5>
-            </div>
-        @endforelse
+        @endforeach
     </div>
 
     <div class="my-4">

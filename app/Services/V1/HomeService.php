@@ -69,10 +69,8 @@ class HomeService
         return $paginator;
     }
 
-    public function detail($request)
+    public function detail($request, $movie_id)
     {
-        $movie_id = $request->get('movie_id', '');
-
         if (!$movie_id) {
             abort(404);
         }
@@ -91,6 +89,36 @@ class HomeService
         }
 
         return $response;
+    }
+
+    public function browseMovies($request)
+    {
+        $quality = $request->get('quality', '2160p');
+        $page = $request->get('page', 1);
+
+        if (!$page) {
+            abort(404);
+        }
+
+        $response = Http::acceptJson()
+            ->get("{$this->baseUrl}/list_movies.json", ['quality' => $quality, 'page' => $page]);
+
+        logger($response);
+
+        if ($response->failed()) {
+            return new LengthAwarePaginator([], 0, 20);
+        }
+
+        $response = $response->json();
+
+        $movies = $response['data']['movies'] ?? [];
+        $currentPage = $response['data']['page_number'] ?? 1;
+        $total = $response['data']['movie_count'] ?? 0;
+        $perPage = $response['data']['limit'] ?? 20;
+
+        $paginator = new LengthAwarePaginator($movies, $total, $perPage, $currentPage, ['path' => $request->url(), 'query' => $request->query()]);
+
+        return $paginator;
     }
 
 

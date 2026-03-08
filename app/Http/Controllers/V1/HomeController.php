@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Services\V1\HomeService;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 
     private HomeService $homeService;
 
@@ -27,10 +28,16 @@ class HomeController extends Controller {
 
         return view('search', compact('data'));
     }
-    public function detail(Request $request)
+    public function detail(Request $request, $movie_id)
     {
-        $data = $this->homeService->detail($request);
+        $data = $this->homeService->detail($request, $movie_id);
 
         return view('movie-detail', compact('data'));
+    }
+    public function browseMovies(Request $request)
+    {
+        $data = $this->homeService->browseMovies($request);
+
+        return view('browse-movie', compact('data'));
     }
 }
