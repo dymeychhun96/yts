@@ -31,6 +31,6 @@
     </div>
 
     <div class="d-flex justify-content-center py-4">
-        {{ $data->onEachSide(2)->links() }}
+        {{ $data->onEachSide(1)->links() }}
     </div>
 @endsection
