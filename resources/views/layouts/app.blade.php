@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('storage/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('public/images/favicon.ico') }}" type="image/x-icon">
     <title>YTS</title>
 
     <!-- style -->

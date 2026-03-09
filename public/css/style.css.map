@@ -1,0 +1,1 @@
+{"version":3,"file":"css/style.css","mappings":"AAAA,UACI,iCACA,sCACJ,CAEA,2BACI,gCACJ,C","sources":["webpack:///./resources/sass/style.scss"],"sourcesContent":[".nav-icon {\r\n    font-variation-settings: 'FILL' 0;\r\n    transition: font-variation-settings .2s;\r\n}\r\n\r\n.nav-link.active .nav-icon {\r\n    font-variation-settings: 'FILL' 1;\r\n}"],"names":[],"sourceRoot":""}
