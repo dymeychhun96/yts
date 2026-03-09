@@ -103,8 +103,6 @@ class HomeService
         $response = Http::acceptJson()
             ->get("{$this->baseUrl}/list_movies.json", ['quality' => $quality, 'page' => $page]);
 
-        logger($response);
-
         if ($response->failed()) {
             return new LengthAwarePaginator([], 0, 20);
         }
