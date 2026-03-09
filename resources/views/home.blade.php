@@ -30,7 +30,7 @@
         @endforelse
     </div>
 
-    <div class="my-4">
-        {{ $data->links() }}
+    <div class="d-flex justify-content-center py-4">
+        {{ $data->onEachSide(2)->links() }}
     </div>
 @endsection
