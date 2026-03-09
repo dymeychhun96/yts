@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('public/images/logo-YTS.svg') }}" alt="Logo YTS">
+            <img src="{{ asset('images/logo-YTS.svg') }}" alt="Logo YTS">
         </a>
         <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarMenu"
             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
