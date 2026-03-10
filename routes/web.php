@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\V1\HomeController;
+namespace App\Http\Controllers\V1;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/detail/{movie_id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/browse_movies/2160p', [HomeController::class, 'browseMovies'])->name('browse-movies');
+
+Route::get('/scrape-torrent', [SeedrController::class, 'scrapeTorrent'])->name('scrape-torrent');

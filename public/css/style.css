@@ -1,3 +1,8 @@
-.nav-icon{font-variation-settings:"FILL" 0;transition:font-variation-settings .2s}.nav-link.active .nav-icon{font-variation-settings:"FILL" 1}
+.nav-icon {
+  font-variation-settings: "FILL" 0;
+  transition: font-variation-settings 0.2s;
+}
 
-/*# sourceMappingURL=style.css.map*/
+.nav-link.active .nav-icon {
+  font-variation-settings: "FILL" 1;
+}

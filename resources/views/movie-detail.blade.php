@@ -3,7 +3,7 @@
 @section('content')
     @if ($data)
         <div class="vh-100 d-flex justify-content-center align-items-center"
-            style="background: url('{{ $data['data']['movie']['background_image'] }}') center center / cover no-repeat;">
+            style="background: url('{{ $data['data']['movie']['background_image'] }}') center center / cover no-repeat fixed;">
 
             <div class="text-center text-light">
                 <img class="img-fluid img-thumbnail" src="{{ $data['data']['movie']['medium_cover_image'] }}"
@@ -12,11 +12,17 @@
                 <p>{{ implode(' / ', $data['data']['movie']['genres']) }}</p>
 
                 <p class="fw-bold">Torrent available</p>
-                @foreach ($data['data']['movie']['torrents'] as $torrent)
-                    <a href="{{ $torrent['url'] }}" class="btn btn-success mt-2"
-                        data-mdb-ripple-init>{{ $torrent['quality'] . '.' . $torrent['type'] . '.' . $torrent['video_codec'] . '. (' . $torrent['size'] . ')' }}</a>
-                @endforeach
+                <div class="container">
+                    <div class="btn-group">
+                        @foreach ($data['data']['movie']['torrents'] as $torrent)
+                            <button type="button" data-url="{{ $torrent['url'] }}"
+                                class="btn btn-success btn-rounded btn-download" data-mdb-ripple-init
+                                title="{{ $torrent['size'] }}">{{ $torrent['quality'] . '.' . $torrent['type'] . '.' . $torrent['video_codec'] }}</button>
+                        @endforeach
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
     @else
         <div class="vh-100 d-flex justify-content-center align-items-center">
@@ -24,3 +30,7 @@
         </div>
     @endif
 @endsection
+
+@push('js')
+    <script src="{{ asset('js/index.js') }}"></script>
+@endpush
