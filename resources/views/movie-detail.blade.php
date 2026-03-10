@@ -12,12 +12,13 @@
                 <p>{{ implode(' / ', $data['data']['movie']['genres']) }}</p>
 
                 <p class="fw-bold">Torrent available</p>
-                @foreach ($data['data']['movie']['torrents'] as $torrent)
-                    <a href="{{ $torrent['url'] }}" class="btn btn-success mt-2"
-                        data-mdb-ripple-init>{{ $torrent['quality'] . '.' . $torrent['type'] . '.' . $torrent['video_codec'] }}</a>
-                @endforeach
+                <div class="d-flex flex-column flex-lg-row">
+                    @foreach ($data['data']['movie']['torrents'] as $torrent)
+                        <a href="{{ $torrent['url'] }}" class="btn btn-success mt-2"
+                            data-mdb-ripple-init>{{ $torrent['quality'] . '.' . $torrent['type'] . '.' . $torrent['video_codec'] . '.' . $torrent['size'] }}</a>
+                    @endforeach
+                </div>
             </div>
-
         </div>
     @else
         <div class="vh-100 d-flex justify-content-center align-items-center">
