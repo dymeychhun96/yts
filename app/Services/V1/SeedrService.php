@@ -16,25 +16,21 @@ class SeedrService
 
     public function scrapeTorrent($request)
     {
-        $header = [
-            'Cookie' => $this->cookie,
-        ];
-
-        $respone = Http::withHeaders($header)
-            ->post('https://www.seedr.cc/scrape/html/torrents', [
-                'url' => 'https://yts.bz/torrent/download/E70B6A744044DD0CAAA33335F4B620DBC47018CB'
+        $response = Http::asForm()
+            ->withHeaders([
+                'accept' => '*/*',
+                'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
+                'x-csrf-token' => 'G2DwBXSXuDTjW0bpAn4pNO96ijI=',
+                'x-layout' => '{{ template "main" . }}',
+                'x-requested-with' => 'XMLHttpRequest',
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ])
+            ->post('https://webtor.io/download-file', [
+                'resource-id' => '4ac05990388d6c9654255011fc29d389ac67ec95',
+                'item-id' => '9e58f19d7ff432ae1efd15feb76b997cd10418ec',
             ]);
 
-        if ($respone->failed()) {
-            return response()->json([
-                'status' => 'failed',
-                'message' => $respone->status(),
-            ]);
-        }
-
-        $respone = $respone->json();
-
-        return $respone;
+        return $response->body();
 
     }
 
