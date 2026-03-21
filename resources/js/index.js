@@ -5,75 +5,46 @@ $(function () {
         },
     });
 
-    async function webtorDownload(resourceId, itemId, csrfToken) {
-        let headersList = {
-            Accept: "*/*",
-            "x-csrf-token": csrfToken,
-            "x-layout": "{{ template 'main' . }}",
-            "x-requested-with": "XMLHttpRequest",
-            "Content-Type": "application/x-www-form-urlencoded",
-        };
+    $(".btn-download").on("click", function () {
+        const torrentHashed = $(this)
+            .data("url")
+            .split("/download/")[1]
+            .toLowerCase();
+        const title = $("h1.title").text().trim();
+        if (!torrentHashed || !title) {
+            console.error("Invalid torrent URL or title");
+            return;
+        }
+        directDownload(torrentHashed, title);
+    });
 
-        let bodyContent = "resource-id=" + resourceId + "&item-id=" + itemId;
+    const directDownload = (torrentHashed, title) => {
+        let urlBase = "https://torrent-direct-link-wxx9.onrender.com";
+        let endPoint = `/torrent/${torrentHashed}`;
 
-        let response = await fetch("https://webtor.io/download-file", {
-            method: "POST",
-            body: bodyContent,
-            headers: headersList,
-        });
-
-        let data = await response.text();
-        console.log(data);
-    }
-
-    async function webtorSite(torrentUrl) {
-        let headersList = {
-            Accept: "*/*",
-        };
-        let torrentId = torrentUrl.split("/").pop().toLowerCase();
-        let url = `https://webtor.io/${torrentId}`;
-
-        let response = await fetch(url, {
-            method: "GET",
-            headers: headersList,
-        });
-
-        let data = await response.text();
-
-        console.log(data);
-
-        let csrfToken = data.match('window._CSRF = "(.*)"')[1];
-        let resourceId = data.match(
-            '<input type="hidden" name="resource-id" value="(.*)"',
-        )[1];
-        let itemId = data.match(
-            '<input type="hidden" name="item-id" value="(.*)"',
-        )[1];
-
-        webtorDownload(resourceId, itemId);
-        console.log(csrfToken);
-        console.log(resourceId);
-        console.log(itemId);
-    }
-
-    const webtor = () => {
         $.ajax({
             type: "GET",
-            url: `${this.location.origin}/scrape-torrent`,
-            success: function (response) {
-                console.log(response);
+            url: urlBase + endPoint,
+            dataType: "json",
+            beforeSend: function () {
+                $(".loading")
+                    .html(`<div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div> <div class="ms-2">Preparing download...</div>`);
             },
-            error: function (response) {
-                console.log(response);
-            },
-        });
+        })
+            .then(
+                (res) => {
+                    if (res && res.download_url) {
+                        window.location.href = res.download_url;
+                    }
+                },
+                (err) => {
+                    console.error(err);
+                },
+            )
+            .always(() => {
+                $(".loading").html("");
+            });
     };
-
-    webtor();
-
-    $(".btn-download").on("click", function () {
-        let url = $(this).data("url");
-
-        webtorSite(url);
-    });
 });
