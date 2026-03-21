@@ -3,6 +3,7 @@
 return [
 
     "yts_base_url" => env("YTS_BASE_URL", ""),
+    "seedr_cookie" => env("SEEDR_COOKIE", ""),
 
     /*
     |--------------------------------------------------------------------------
