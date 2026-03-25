@@ -1,3 +1,171 @@
+:root {
+  --mdb-primary: #e50914;
+}
+
+.text-brand {
+  color: var(--mdb-primary) !important;
+}
+
+.bg-brand {
+  background-color: var(--mdb-primary) !important;
+}
+
+.btn-brand {
+  background-color: var(--mdb-primary) !important;
+  color: white !important;
+}
+
+.btn-outline-brand {
+  border-color: var(--mdb-primary) !important;
+  color: var(--mdb-primary) !important;
+}
+
+.btn-outline-brand:hover {
+  background-color: var(--mdb-primary) !important;
+  color: white !important;
+}
+
+.hero-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.movie-poster {
+  height: 320px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Pagination Styles */
+.page-item.active .page-link {
+  background-color: var(--mdb-primary) !important;
+  border-color: var(--mdb-primary) !important;
+  color: #fff !important;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);
+}
+
+.page-link {
+  color: #444;
+  border: none;
+  margin: 0 2px;
+  border-radius: 8px !important;
+  padding: 8px 14px;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  .page-link {
+    padding: 6px 10px;
+    margin: 0 1px;
+    font-size: 0.8rem;
+  }
+  .pagination-info-text {
+    font-size: 0.75rem;
+  }
+}
+.page-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--mdb-primary);
+}
+
+.page-item.disabled .page-link {
+  color: #ccc !important;
+  background-color: transparent;
+}
+
+.modal-movie-poster {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Remade Torrent Card Design */
+.torrent-card {
+  background-color: #ffffff;
+  /* Explicitly white for light mode */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.torrent-card:hover {
+  border-color: var(--mdb-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.torrent-header {
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Light Mode Header Colors */
+.type-bluray {
+  background-color: #eef6ff;
+  color: #007bff;
+}
+
+.type-web {
+  background-color: #fff1f1;
+  color: #e50914;
+}
+
+.type-default {
+  background-color: #f8f9fa;
+  color: #666;
+}
+
+/* Dark Mode Overrides */
+[data-mdb-theme=dark] .navbar {
+  background-color: #1a1a1a !important;
+}
+
+[data-mdb-theme=dark] .page-link {
+  color: #bbb;
+}
+
+[data-mdb-theme=dark] .page-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-mdb-theme=dark] .torrent-card {
+  background-color: #262626;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-mdb-theme=dark] .type-bluray {
+  background-color: rgba(13, 110, 253, 0.15);
+  color: #4dabff;
+}
+
+[data-mdb-theme=dark] .type-web {
+  background-color: rgba(229, 9, 20, 0.15);
+  color: #ff4d4d;
+}
+
+[data-mdb-theme=dark] .type-default {
+  background-color: #333;
+  color: #ccc;
+}
+
+/* Ensure specific span text is visible in dark mode within headers */
+[data-mdb-theme=dark] .torrent-header .quality-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .nav-icon {
   font-variation-settings: "FILL" 0;
   transition: font-variation-settings 0.2s;
