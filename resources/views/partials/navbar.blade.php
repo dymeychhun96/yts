@@ -12,13 +12,13 @@
             </button>
 
             <!-- Navbar Toggler for mobile -->
-            <button class="navbar-toggler ms-1" type="button" data-mdb-collapse-init data-mdb-target="#navbarNav">
-                <i class="fas fa-bars"></i>
+            <button class="navbar-toggler ms-1" type="button" data-mdb-collapse-init data-mdb-target="#navbarMenu">
+                <i class="fas fa-bars icon"></i>
             </button>
         </div>
 
         <!-- Links container pushed to the right on desktop -->
-        <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+        <div class="collapse navbar-collapse order-lg-2" id="navbarMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('home') }}">Home</a>
