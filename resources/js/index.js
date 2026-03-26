@@ -32,6 +32,10 @@ $(function () {
         })
             .then(
                 (res) => {
+                    $(".info")
+                        .html(`<div class="alert alert-success" role="alert">
+                        Download ready!
+                    </div>`);
                     if (res && res.download_url) {
                         window.location.href = res.download_url;
                     }
