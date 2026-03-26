@@ -7,7 +7,6 @@ $(function () {
 
     $(document).on("click", ".btn-download", function () {
         const torrentHashed = $(this).data("hash").toLowerCase();
-        console.log("Torrent Hash:", torrentHashed);
         if (!torrentHashed) {
             console.error("Invalid torrent hash");
             return;
@@ -41,7 +40,6 @@ $(function () {
                     }
                 },
                 (err) => {
-                    console.error(err);
                     $(".info")
                         .html(`<div class="alert alert-danger" role="alert">
                         Failed to prepare download. Please try again later.

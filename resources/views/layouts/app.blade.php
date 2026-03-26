@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
     <!-- style -->
-    {{-- <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=4k,close,home,menu,search,travel_explore&display=block" /> --}}
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu&display=block" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -34,11 +34,11 @@
         let navbarMenu = document.getElementById('navbarMenu');
 
         navbarMenu.addEventListener('show.mdb.collapse', function() {
-            $('#hamburgerIcon').text('close');
+            $('i.icon').removeClass('fa-bars').addClass('fa-xmark');
         });
 
         navbarMenu.addEventListener('hide.mdb.collapse', function() {
-            $('#hamburgerIcon').text('menu');
+            $('i.icon').removeClass('fa-xmark').addClass('fa-bars');
         });
     </script>
 
