@@ -16,7 +16,7 @@
         <div class="text-center">
             <h1>404 Not Found</h1>
             <p>The page you are looking for could not be found.</p>
-            <a href="{{ route('home') }}" class="btn btn-primary">
+            <a href="{{ route('home') }}" class="btn btn-danger">
                 Back to Home</a>
         </div>
     </div>

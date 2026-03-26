@@ -124,9 +124,9 @@ function renderMovies(movies) {
                                 <span><i class="far fa-calendar-alt me-1"></i> ${movie.year}</span>
                                 <span><i class="far fa-clock me-1"></i> ${movie.runtime}m</span>
                             </div>
-                            <p class="card-text text-muted small mb-4 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">
+                            <!-- <p class="card-text text-muted small mb-4 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">
                                 ${movie.summary || "No description available for this movie."}
-                            </p>
+                            </p> -->
                             <div class="mt-auto">
                                 <div class="mb-3">
                                     ${(movie.genres || [])
@@ -149,7 +149,7 @@ function renderMovies(movies) {
         .join("");
 }
 
-function showMovieDetails(movieId) {
+window.showMovieDetails = function (movieId) {
     const movie = currentMovies.find((m) => m.id === movieId);
     if (!movie) return;
 
@@ -178,7 +178,7 @@ function showMovieDetails(movieId) {
                 <div class="col-sm-6 col-md-4">
                     <div class="torrent-card h-100 d-flex flex-column">
                         <div class="torrent-header ${typeClass}">
-                            <span><i class="${icon} me-1"></i> ${t.type || "Standard"}</span>
+                            <span><i class="${icon} me-1"></i> ${t.type + "." + t.video_codec || "Standard"}</span>
                             <span class="quality-label" style="opacity: 0.7;">${t.quality}</span>
                         </div>
                         <div class="p-3 text-center flex-grow-1 d-flex flex-column justify-content-center">
@@ -186,9 +186,12 @@ function showMovieDetails(movieId) {
                                 <h4 class="fw-bold mb-0 text-body">${t.quality}</h4>
                                 <span class="text-muted small">${t.size}</span>
                             </div>
-                            <a href="${t.url}" class="btn btn-brand btn-rounded btn-sm shadow-0 w-100">
-                                <i class="fas fa-cloud-download-alt me-2"></i>Download
+                            <a href="${t.url}" class="btn btn-brand btn-rounded btn-sm shadow-0 w-100 mb-2">
+                                <i class="fas fa-cloud-download-alt me-2"></i>Torrent Link
                             </a>
+                            <button data-hash="${t.hash}" class="btn btn-brand btn-rounded btn-sm shadow-0 w-100 btn-download">
+                                <i class="fas fa-cloud-download-alt me-2"></i>Direct Download
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -227,13 +230,17 @@ function showMovieDetails(movieId) {
                         <div class="row g-3">
                             ${torrentsHtml || '<div class="col-12 text-center p-4 bg-body-secondary rounded-4"><p class="text-muted mb-0">No download links available for this title.</p></div>'}
                         </div>
+                        <div class="p-3 text-center loading">
+                        </div>
+                        <div class="p-3 text-center info">
+                        </div>
                     </div>
                 </div>
             </div>
         `;
 
     movieDetailsModal.show();
-}
+};
 
 function createPageItem(label, page, active = false, disabled = false) {
     const li = document.createElement("li");

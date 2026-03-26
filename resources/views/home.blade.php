@@ -6,8 +6,8 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
             <h2 id="sectionTitle" class="h4 border-start border-4 border-danger ps-3 mb-0">Latest Releases</h2>
             <div class="dropdown">
-                <button class="btn btn-link dropdown-toggle text-dark shadow-0" type="button" id="sortMenu"
-                    data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
+                <button class="btn btn-link dropdown-toggle shadow-0" type="button" id="sortMenu" data-mdb-dropdown-init
+                    data-mdb-ripple-init aria-expanded="false">
                     <i class="fas fa-sort-amount-down me-2"></i>Sort By
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end shadow-3 border-0">
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="movieGrid"></div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4" id="movieGrid"></div>
 
         <nav class="mt-5 pt-4 border-top">
             <ul class="pagination flex-wrap justify-content-center mb-0" id="paginationContainer"></ul>
@@ -55,4 +55,5 @@
 
 @push('js')
     <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 @endpush

@@ -38,8 +38,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-0 border-bottom">
     <div class="container">
         <!-- Brand on the Left -->
-        <a class="navbar-brand fw-bolder fs-3 ls-tight text-brand me-auto me-lg-4"
-            href="{{ Route::is('home') }}">CINEFLEX</a>
+        <a class="navbar-brand fw-bolder fs-3 ls-tight text-brand me-auto me-lg-4" href="{{ route('home') }}">CINEFlIX</a>
 
         <!-- Right side elements grouped -->
         <div class="d-flex align-items-center order-lg-3">

@@ -22,13 +22,11 @@
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column min-vh-100">
-        @include('partials.navbar')
+    @include('partials.navbar')
 
-        @yield('content')
+    @yield('content')
 
-        @include('partials.footer')
-    </div>
+    @include('partials.footer')
 
     <!-- script -->
     <script src="{{ asset('js/app.js') }}"></script>
